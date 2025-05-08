@@ -4,6 +4,7 @@ jobs:
   say-hello:
     runs-on: ubuntu-latest
     steps:
-      - run: ls
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .
       - run: ls
