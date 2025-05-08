@@ -14,3 +14,8 @@ jobs:
       - run: exit 1
       - run: echo STEP 2
         if: always()
+  deploy:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo deploy in prod
