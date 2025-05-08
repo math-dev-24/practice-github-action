@@ -13,13 +13,14 @@ jobs:
 
       - id: env
         run: |
-          echo $GITHUB_ENV
-          echo FROM_ENV=value_step >> $GITHUB_ENV
+          echo $GITHUB_OUTPUTS
+          echo FROM_ENV=value_step >> $GITHUB_OUTPUT
 
       - id: test
         run: |
           echo ${{ 'main' == 'top' }}
-          echo $FROM_ENV
+          echo test : $FROM_ENV
+          echo ${{ steps.env.outputs.FROM_ENV }}
 
       - run: echo ${{ contains(github.ref, 'main') }}
 
