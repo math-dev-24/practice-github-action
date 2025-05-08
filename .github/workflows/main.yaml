@@ -1,7 +1,13 @@
-name: First workflow
+name: Second workflow
 on: [push]
+
+
 jobs:
   say-hello:
+    env:
+      VAR_2: from job
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello World"
+      - run: echo ${{ 42 }}
+      - run: echo ${{ 'main' == 'top' }}
+      - run: echo ${{ contains(github.ref, 'main') }}
