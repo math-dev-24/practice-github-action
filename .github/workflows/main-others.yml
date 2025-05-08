@@ -19,8 +19,8 @@ jobs:
           VAR_3: from step
       - name: use env
         run: |
+          echo VAR_REPO: $VAR_REPO
           echo VAR_1: $VAR_1
           echo VAR_2: $VAR_2
           echo VAR_3: $VAR_3
-          echo VAR_REPO: $VAR_REPO
           echo SECRET: $SECRET_1
