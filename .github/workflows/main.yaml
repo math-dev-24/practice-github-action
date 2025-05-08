@@ -8,13 +8,28 @@ jobs:
       VAR_2: from job
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ 42 }}
-      - run: echo ${{ 'main' == 'top' }}
+      - id: step1
+        run: echo ${{ 42 }}
+
+      - id: env
+        run: |
+          echo $GITHUB_ENV
+          echo FROM_ENV=value_step >> $GITHUB_ENV
+
+      - id: test
+        run: |
+          echo ${{ 'main' == 'top' }}
+          echo $FROM_ENV
+
       - run: echo ${{ contains(github.ref, 'main') }}
+
       - run: exit 1
+
       - run: echo STEP 2
         if: always()
+
   deploy:
+    needs: say-hello
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
