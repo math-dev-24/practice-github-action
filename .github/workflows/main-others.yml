@@ -1,10 +1,23 @@
 name: Second workflow
 on: [push]
+
+env:
+  VAR_1: from workflow
+
 jobs:
   say-hello:
+    env:
+      VAR_2: from job
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           sparse-checkout: .
-      - run: ls
+      - name: echo file
+        run: ls
+        env:
+          VAR_3: from step
+      - name: use env
+        run: |
+          echo VAR_1: $VAR_1
+          echo VAR_2: $VAR_2
