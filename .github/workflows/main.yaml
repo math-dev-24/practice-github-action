@@ -7,6 +7,8 @@ jobs:
     env:
       VAR_2: from job
     runs-on: ubuntu-latest
+    outputs:
+      FROM_SAY: ${{ steps.env.outputs.FROM_ENV }}
     steps:
       - id: step1
         run: echo ${{ 42 }}
@@ -19,19 +21,13 @@ jobs:
       - id: test
         run: |
           echo ${{ 'main' == 'top' }}
-          echo test : $FROM_ENV
+          echo ne marche pas : $FROM_ENV
           echo ${{ steps.env.outputs.FROM_ENV }}
 
-      - run: echo ${{ contains(github.ref, 'main') }}
-
-      - run: exit 1
-
-      - run: echo STEP 2
-        if: always()
 
   deploy:
     needs: say-hello
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo deploy in prod
+      - run: echo ${{ needs.say-hello.outputs.FROM_ENV }}
