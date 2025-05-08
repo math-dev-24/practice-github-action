@@ -11,3 +11,6 @@ jobs:
       - run: echo ${{ 42 }}
       - run: echo ${{ 'main' == 'top' }}
       - run: echo ${{ contains(github.ref, 'main') }}
+      - run: exit 1
+      - run: echo STEP 2
+        if: always()
