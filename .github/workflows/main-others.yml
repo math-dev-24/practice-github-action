@@ -26,4 +26,4 @@ jobs:
           echo VAR_1: $VAR_1
           echo VAR_2: $VAR_2
           echo VAR_3: $VAR_3
-          echo SECRET: ${{ vars.SECRET_1 }}
+          echo SECRET: ${{ secrets.SECRET_1 }}
