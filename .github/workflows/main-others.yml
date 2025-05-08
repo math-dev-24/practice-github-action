@@ -19,6 +19,9 @@ jobs:
           VAR_3: from step
       - name: use env
         run: |
+          echo git_ref: $GITHUB_REF
+          echo git: $GITHUB_SHA
+          echo git: $GITHUB_EVENT_NAME
           echo VAR_REPO: $VAR_REPO
           echo VAR_1: $VAR_1
           echo VAR_2: $VAR_2
